@@ -42,15 +42,17 @@ public class MainActivity extends AppCompatActivity {
     class TimeChangeReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-      
+
             //Objects.requireNonNull 空安全
             switch (Objects.requireNonNull(intent.getAction())) {
                 case Intent.ACTION_TIME_TICK:
                     Date day = new Date();
                     SimpleDateFormat simp = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA);
+                    String time = simp.format(day);
+                    //对当前时间加五分钟
                     Calendar calendar = Calendar.getInstance();
                     calendar.add(Calendar.MINUTE, 5);
-                    String time = simp.format(day);
+                    //获取时间calendar.getTime()
                     String submittime = simp.format(calendar.getTime());
                     Log.e("time", time);
                     Log.e("submittime", submittime);
